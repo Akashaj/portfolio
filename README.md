@@ -14,7 +14,7 @@ Every fact on the site lives in `content/`:
 | `content/experience.ts` | roles and education |
 | `content/work.ts` | case studies (each one becomes `/work/<slug>`) |
 
-The resume download is `public/Akash_Jayakumar_Resume.pdf` (phone number removed).
+The resume download is `public/Akash_Jayakumar_Resume.pdf`.
 
 ## Develop
 ```bash

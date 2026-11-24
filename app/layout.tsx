@@ -69,6 +69,7 @@ const personJsonLd = {
   jobTitle: profile.role,
   description: profile.summaryShort,
   email: `mailto:${profile.email}`,
+  telephone: profile.phone,
   address: { "@type": "PostalAddress", addressLocality: "Chennai", addressCountry: "IN" },
   worksFor: { "@type": "Organization", name: "Foodhub" },
   alumniOf: { "@type": "CollegeOrUniversity", name: "Sathyabama Institute of Science and Technology" },

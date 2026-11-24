@@ -1,5 +1,5 @@
 import { profile } from "@/content/profile";
-import { GitHubIcon, LinkedInIcon, MailIcon } from "./icons";
+import { GitHubIcon, LinkedInIcon, MailIcon, PhoneIcon } from "./icons";
 
 export function SiteFooter() {
   return (
@@ -11,6 +11,9 @@ export function SiteFooter() {
         <div className="flex items-center gap-4">
           <a href={`mailto:${profile.email}`} className="hover:text-fg" aria-label="Email">
             <MailIcon className="size-5" />
+          </a>
+          <a href={profile.phoneHref} className="hover:text-fg" aria-label={`Call ${profile.phone}`}>
+            <PhoneIcon className="size-5" />
           </a>
           <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-fg" aria-label="LinkedIn">
             <LinkedInIcon className="size-5" />

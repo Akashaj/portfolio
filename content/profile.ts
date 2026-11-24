@@ -9,6 +9,8 @@ export const profile = {
   stackLine: "React Native · TypeScript · Node.js · Express · Next.js",
   location: "Chennai, India",
   email: "akash.jayakumar96@gmail.com",
+  phone: "+91 97898 16969",
+  phoneHref: "tel:+919789816969",
   linkedin: "https://www.linkedin.com/in/akash-jayakumar-a148a4151",
   github: "https://github.com/Akashaj",
   resume: "/Akash_Jayakumar_Resume.pdf",
@@ -93,10 +95,18 @@ export const skills = [
   },
   {
     group: "Reliability & Delivery",
-    items: ["OpenSearch / Kibana", "Structured logging", "Root cause analysis", "Memory & performance profiling", "Jest", "GitHub Actions", "CodePush OTA", "App Store / Google Play releases", "Security audits"],
+    items: ["OpenSearch / Kibana", "Structured logging", "Root cause analysis", "Memory & performance profiling", "GitHub Actions CI/CD", "CodePush OTA", "App Store / Google Play releases", "Security audits"],
+  },
+  {
+    group: "Testing & Quality",
+    items: ["Jest (unit & integration)", "Redux-Saga testing", "E2E testing", "Maestro (mobile E2E flows)", "Reassure (performance regression testing)", "Test automation in CI"],
+  },
+  {
+    group: "Agentic AI & Tooling",
+    items: ["Agentic AI workflows", "Callstack agent-device (AI-driven device automation)", "AI-assisted test generation", "Claude Code", "Cursor"],
   },
   {
     group: "Leadership",
-    items: ["System design reviews", "Code reviews", "Mentoring & onboarding", "Hiring", "Cross-region teams (UK, AU, IN)", "AI-assisted engineering (Claude Code, Cursor)"],
+    items: ["System design reviews", "Code reviews", "Mentoring & onboarding", "Hiring", "Cross-region teams (UK, AU, IN)"],
   },
 ];

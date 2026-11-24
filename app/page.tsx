@@ -15,6 +15,7 @@ import {
   LinkedInIcon,
   MailIcon,
   MapPinIcon,
+  PhoneIcon,
 } from "@/components/icons";
 
 export default function Home() {
@@ -82,6 +83,9 @@ function Hero() {
               </a>
               <a href={`mailto:${profile.email}`} aria-label="Email" className="rounded-lg p-2.5 text-muted transition-colors hover:text-accent">
                 <MailIcon className="size-5" />
+              </a>
+              <a href={profile.phoneHref} aria-label={`Call ${profile.phone}`} className="rounded-lg p-2.5 text-muted transition-colors hover:text-accent">
+                <PhoneIcon className="size-5" />
               </a>
             </div>
           </div>
@@ -389,6 +393,12 @@ function Contact() {
                 className="btn-shine inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-sm font-medium text-accent-fg transition-colors hover:bg-accent-strong"
               >
                 <MailIcon className="size-4" /> {profile.email}
+              </a>
+              <a
+                href={profile.phoneHref}
+                className="inline-flex h-11 items-center gap-2 rounded-lg border border-line-strong px-5 text-sm font-medium transition-colors hover:border-fg"
+              >
+                <PhoneIcon className="size-4" /> {profile.phone}
               </a>
               <a
                 href={profile.linkedin}
