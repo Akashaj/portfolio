@@ -6,7 +6,7 @@ import "./globals.css";
 import { SITE_URL, profile } from "@/content/profile";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import { VariantSwitcher } from "@/components/VariantSwitcher";
+import { RevealObserver } from "@/components/RevealObserver";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -57,8 +57,8 @@ export const viewport: Viewport = {
   ],
 };
 
-// Sets theme + accent before paint to avoid a flash.
-const initScript = `(function(){try{var d=document.documentElement,s=localStorage;var p=new URLSearchParams(location.search);var t=p.get('theme')||s.getItem('theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}d.dataset.theme=t;var q=p.get('accent');var a=q||s.getItem('accent');if(a==='purple'||a==='teal'){d.dataset.accent=a;if(q)s.setItem('accent',a)}}catch(e){}})();`;
+// Sets theme before paint (no flash) and opts into scroll animations.
+const initScript = `(function(){try{var d=document.documentElement,s=localStorage;var p=new URLSearchParams(location.search);var t=p.get('theme')||s.getItem('theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}d.dataset.theme=t;if(!matchMedia('(prefers-reduced-motion: reduce)').matches)d.classList.add('js-motion')}catch(e){}})();`;
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -81,7 +81,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-theme="light"
-      data-accent="teal"
+      data-accent="purple"
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full`}
     >
@@ -104,7 +104,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </main>
         <SiteFooter />
-        <VariantSwitcher />
+        <RevealObserver />
         <Analytics />
         <SpeedInsights />
       </body>

@@ -16,7 +16,7 @@ export function SectionHeading({
   lead?: string;
 }) {
   return (
-    <div className="mb-10 max-w-2xl">
+    <div data-reveal className="mb-10 max-w-2xl">
       <p className="mb-3 font-mono text-xs uppercase tracking-[0.18em] text-accent">{eyebrow}</p>
       <h2 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">{title}</h2>
       {lead && <p className="mt-4 text-pretty text-muted">{lead}</p>}

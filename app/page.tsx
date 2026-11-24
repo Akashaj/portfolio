@@ -6,6 +6,7 @@ import { apps } from "@/content/apps";
 import { experience, education } from "@/content/experience";
 import { work } from "@/content/work";
 import { Container, SectionHeading, StoreLinks, Tag } from "@/components/ui";
+import { CountUp } from "@/components/CountUp";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -21,6 +22,7 @@ export default function Home() {
     <>
       <Hero />
       <Metrics />
+      <StackMarquee />
       <Capabilities />
       <SelectedWork />
       <Apps />
@@ -60,7 +62,7 @@ function Hero() {
           <div className="fade-up delay-3 mt-8 flex flex-wrap items-center gap-3">
             <Link
               href="#work"
-              className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-sm font-medium text-accent-fg transition-colors hover:bg-accent-strong"
+              className="btn-shine inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-sm font-medium text-accent-fg transition-colors hover:bg-accent-strong"
             >
               View my work <ArrowRight className="size-4" />
             </Link>
@@ -86,6 +88,7 @@ function Hero() {
         </div>
 
         <div className="fade-up delay-2 relative mx-auto w-full max-w-sm lg:max-w-none">
+          <div className="float">
           <div className="absolute -inset-3 rounded-[28px] bg-accent/15 blur-2xl" aria-hidden />
           <div className="relative overflow-hidden rounded-3xl border border-line bg-surface shadow-xl">
             <Image
@@ -100,6 +103,7 @@ function Hero() {
               <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-white/70">{profile.now.label}</p>
               <p className="mt-1 text-sm leading-snug">{profile.now.text}</p>
             </div>
+          </div>
           </div>
           <p className="mt-4 flex items-center justify-center gap-1.5 text-sm text-subtle lg:justify-start">
             <MapPinIcon className="size-4" /> {profile.location}
@@ -117,9 +121,13 @@ function Metrics() {
         {metrics.map((m, i) => (
           <div
             key={m.label}
+            data-reveal
+            style={{ "--d": `${i * 90}ms` } as React.CSSProperties}
             className={`px-2 py-8 sm:px-6 ${i % 2 === 1 ? "border-l border-line" : ""} ${i >= 2 ? "border-t border-line lg:border-t-0" : ""} ${i === 2 ? "lg:border-l" : ""}`}
           >
-            <p className="font-mono text-3xl font-semibold tracking-tight text-accent sm:text-4xl">{m.value}</p>
+            <p className="font-mono text-3xl font-semibold tracking-tight text-accent sm:text-4xl">
+              <CountUp value={m.value} />
+            </p>
             <p className="mt-2 text-sm font-medium">{m.label}</p>
             <p className="mt-1 text-xs text-subtle">{m.detail}</p>
           </div>
@@ -142,7 +150,12 @@ function Capabilities() {
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {capabilities.map((c, i) => (
-            <article key={c.title} className="flex flex-col rounded-2xl border border-line bg-surface p-6">
+            <article
+              key={c.title}
+              data-reveal
+              style={{ "--d": `${i * 110}ms` } as React.CSSProperties}
+              className="spotlight flex flex-col rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-accent/50"
+            >
               <span className="font-mono text-xs text-accent">0{i + 1}</span>
               <h3 className="mt-3 text-lg font-semibold">{c.title}</h3>
               <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">{c.body}</p>
@@ -173,7 +186,9 @@ function SelectedWork() {
             <Link
               key={w.slug}
               href={`/work/${w.slug}`}
-              className={`group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-surface p-6 transition-all hover:-translate-y-0.5 hover:border-accent hover:shadow-lg sm:p-8 ${i === 0 ? "md:col-span-2" : ""}`}
+              data-reveal
+              style={{ "--d": `${(i % 2) * 110}ms` } as React.CSSProperties}
+              className={`spotlight group relative flex flex-col overflow-hidden rounded-2xl border border-line bg-surface p-6 transition-all hover:-translate-y-0.5 hover:border-accent hover:shadow-lg sm:p-8 ${i === 0 ? "md:col-span-2" : ""}`}
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
@@ -215,10 +230,15 @@ function Apps() {
           lead="Apps I've built, rebuilt or owned. Each card says what my role was."
         />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {apps.map((a) => (
-            <article key={a.name} className="flex flex-col rounded-2xl border border-line bg-surface p-5 transition-colors hover:border-line-strong">
+          {apps.map((a, i) => (
+            <article
+              key={a.name}
+              data-reveal
+              style={{ "--d": `${(i % 3) * 90}ms` } as React.CSSProperties}
+              className="spotlight group flex flex-col rounded-2xl border border-line bg-surface p-5 transition-[border-color,transform,box-shadow] duration-300 hover:-translate-y-1 hover:border-accent/50 hover:shadow-lg"
+            >
               <div className="flex items-start gap-3">
-                <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-accent-soft font-semibold text-accent-soft-fg">
+                <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-accent-soft font-semibold text-accent-soft-fg transition-transform duration-300 group-hover:-rotate-6 group-hover:scale-110">
                   {a.name.charAt(0)}
                 </span>
                 <div className="min-w-0">
@@ -262,8 +282,13 @@ function Leadership() {
           />
         </div>
         <div className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
-          {leadership.map((l) => (
-            <div key={l.title} className="bg-surface p-6">
+          {leadership.map((l, i) => (
+            <div
+              key={l.title}
+              data-reveal
+              style={{ "--d": `${(i % 3) * 90}ms` } as React.CSSProperties}
+              className="spotlight bg-surface p-6"
+            >
               <h3 className="font-semibold">{l.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted">{l.body}</p>
             </div>
@@ -281,8 +306,11 @@ function Experience() {
         <SectionHeading eyebrow="Experience" title="8+ years, one through-line: reliable mobile systems." />
         <ol className="relative space-y-10 border-l border-line pl-6 sm:pl-8">
           {experience.map((r) => (
-            <li key={`${r.title}-${r.period}`} className="relative">
-              <span className="absolute -left-[31px] top-1.5 size-3 rounded-full border-2 border-accent bg-bg sm:-left-[39px]" aria-hidden />
+            <li key={`${r.title}-${r.period}`} data-reveal="left" className="relative">
+              <span className="absolute -left-[31px] top-1.5 flex size-3 sm:-left-[39px]" aria-hidden>
+                <span className="absolute inline-flex size-full animate-ping rounded-full bg-accent opacity-30 motion-reduce:animate-none" />
+                <span className="relative size-3 rounded-full border-2 border-accent bg-bg" />
+              </span>
               <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
                 <h3 className="text-lg font-semibold">
                   {r.title} <span className="text-muted">· {r.org}</span>
@@ -301,7 +329,7 @@ function Experience() {
               </ul>
             </li>
           ))}
-          <li className="relative">
+          <li data-reveal="left" className="relative">
             <span className="absolute -left-[31px] top-1.5 size-3 rounded-full border-2 border-line-strong bg-bg sm:-left-[39px]" aria-hidden />
             <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
               <h3 className="text-lg font-semibold">
@@ -323,8 +351,8 @@ function Skills() {
       <Container>
         <SectionHeading eyebrow="Toolbox" title="Skills" />
         <div className="grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
-          {skills.map((g) => (
-            <div key={g.group}>
+          {skills.map((g, i) => (
+            <div key={g.group} data-reveal style={{ "--d": `${(i % 3) * 90}ms` } as React.CSSProperties}>
               <h3 className="mb-3 text-sm font-semibold">{g.group}</h3>
               <ul className="flex flex-wrap gap-1.5">
                 {g.items.map((s) => (
@@ -345,7 +373,7 @@ function Contact() {
   return (
     <section id="contact" className="border-t border-line py-20 sm:py-28">
       <Container>
-        <div className="relative overflow-hidden rounded-3xl border border-line bg-surface px-6 py-14 text-center sm:px-12">
+        <div data-reveal="scale" className="relative overflow-hidden rounded-3xl border border-line bg-surface px-6 py-14 text-center sm:px-12">
           <div className="hero-glow pointer-events-none absolute inset-0" aria-hidden />
           <div className="relative">
             <p className="font-mono text-xs uppercase tracking-[0.18em] text-accent">Contact</p>
@@ -358,7 +386,7 @@ function Contact() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <a
                 href={`mailto:${profile.email}`}
-                className="inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-sm font-medium text-accent-fg transition-colors hover:bg-accent-strong"
+                className="btn-shine inline-flex h-11 items-center gap-2 rounded-lg bg-accent px-5 text-sm font-medium text-accent-fg transition-colors hover:bg-accent-strong"
               >
                 <MailIcon className="size-4" /> {profile.email}
               </a>
@@ -374,6 +402,31 @@ function Contact() {
           </div>
         </div>
       </Container>
+    </section>
+  );
+}
+
+const STACK = [
+  "React Native", "TypeScript", "Node.js", "Express", "Next.js", "React", "JSI", "SQLite",
+  "GraphQL", "AWS AppSync", "Firebase", "Cloud Functions", "Redux Toolkit", "Redux-Saga",
+  "Zustand", "Kotlin", "iOS", "Android TV", "Jest", "GitHub Actions", "CodePush", "OpenSearch",
+];
+
+function StackMarquee() {
+  return (
+    <section aria-label="Technologies" className="marquee overflow-hidden border-b border-line py-5">
+      <ul className="marquee-track flex w-max gap-3">
+        {[...STACK, ...STACK].map((t, i) => (
+          <li
+            key={i}
+            aria-hidden={i >= STACK.length}
+            className="flex items-center gap-3 whitespace-nowrap font-mono text-sm text-subtle"
+          >
+            <span className="size-1.5 rounded-full bg-accent/60" aria-hidden />
+            {t}
+          </li>
+        ))}
+      </ul>
     </section>
   );
 }

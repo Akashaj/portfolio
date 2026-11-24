@@ -26,7 +26,7 @@ export default async function Image() {
       >
         <div style={{ display: "flex", flexDirection: "column", flex: 1, justifyContent: "space-between" }}>
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <div style={{ fontSize: 22, color: "#2dd4bf", letterSpacing: 3, textTransform: "uppercase" }}>
+            <div style={{ fontSize: 22, color: "#a78bfa", letterSpacing: 3, textTransform: "uppercase" }}>
               {profile.role}
             </div>
             <div style={{ fontSize: 72, fontWeight: 700, marginTop: 20, letterSpacing: -2 }}>{profile.name}</div>
@@ -36,7 +36,7 @@ export default async function Image() {
           <div style={{ display: "flex", gap: 48 }}>
             {metrics.slice(0, 3).map((m) => (
               <div key={m.label} style={{ display: "flex", flexDirection: "column" }}>
-                <div style={{ fontSize: 44, fontWeight: 700, color: "#2dd4bf" }}>{m.value}</div>
+                <div style={{ fontSize: 44, fontWeight: 700, color: "#a78bfa" }}>{m.value}</div>
                 <div style={{ fontSize: 18, color: "#a1a1aa" }}>{m.label}</div>
               </div>
             ))}

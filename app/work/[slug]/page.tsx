@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getWork, work } from "@/content/work";
 import { profile } from "@/content/profile";
 import { Container, Tag } from "@/components/ui";
+import { CountUp } from "@/components/CountUp";
 import { Diagram } from "@/components/Diagrams";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "@/components/icons";
 
@@ -36,14 +37,14 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
       <header className="relative overflow-hidden border-b border-line">
         <div className="hero-glow pointer-events-none absolute inset-0" aria-hidden />
         <Container className="relative py-14 sm:py-20">
-          <Link href="/#work" className="inline-flex items-center gap-1.5 text-sm text-muted hover:text-fg">
+          <Link href="/#work" className="fade-up inline-flex items-center gap-1.5 text-sm text-muted hover:text-fg">
             <ArrowLeft className="size-4" /> All work
           </Link>
-          <p className="mt-8 font-mono text-xs uppercase tracking-[0.16em] text-accent">{w.kicker}</p>
-          <h1 className="mt-3 max-w-4xl text-3xl font-semibold tracking-tight text-balance sm:text-5xl">{w.title}</h1>
-          <p className="mt-5 max-w-3xl text-lg leading-relaxed text-pretty text-muted">{w.summary}</p>
+          <p className="fade-up delay-1 mt-8 font-mono text-xs uppercase tracking-[0.16em] text-accent">{w.kicker}</p>
+          <h1 className="fade-up delay-1 mt-3 max-w-4xl text-3xl font-semibold tracking-tight text-balance sm:text-5xl">{w.title}</h1>
+          <p className="fade-up delay-2 mt-5 max-w-3xl text-lg leading-relaxed text-pretty text-muted">{w.summary}</p>
 
-          <dl className="mt-10 grid gap-6 rounded-2xl border border-line bg-surface p-6 sm:grid-cols-3">
+          <dl className="fade-up delay-3 mt-10 grid gap-6 rounded-2xl border border-line bg-surface p-6 sm:grid-cols-3">
             <div>
               <dt className="text-xs text-subtle">Client</dt>
               <dd className="mt-1 text-sm font-medium">{w.client}</dd>
@@ -67,9 +68,16 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
           </dl>
 
           <div className="mt-6 grid grid-cols-3 gap-3">
-            {w.metrics.map((m) => (
-              <div key={m.label} className="rounded-xl border border-line bg-surface p-4">
-                <p className="font-mono text-xl font-semibold text-accent sm:text-2xl">{m.value}</p>
+            {w.metrics.map((m, i) => (
+              <div
+                key={m.label}
+                data-reveal
+                style={{ "--d": `${i * 100}ms` } as React.CSSProperties}
+                className="rounded-xl border border-line bg-surface p-4"
+              >
+                <p className="font-mono text-xl font-semibold text-accent sm:text-2xl">
+                  <CountUp value={m.value} />
+                </p>
                 <p className="mt-1 text-xs text-subtle">{m.label}</p>
               </div>
             ))}
@@ -80,7 +88,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/work/[slug]"
       <Container className="py-14 sm:py-20">
         <div className="mx-auto max-w-3xl space-y-14">
           {w.sections.map((s) => (
-            <section key={s.heading}>
+            <section key={s.heading} data-reveal>
               <h2 className="text-2xl font-semibold tracking-tight">{s.heading}</h2>
               {s.body?.map((p) => (
                 <p key={p} className="mt-4 leading-relaxed text-pretty text-muted">

@@ -38,7 +38,7 @@ export function SiteHeader() {
           <a
             href={profile.resume}
             download
-            className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-fg px-3 text-sm font-medium text-bg transition-opacity hover:opacity-90"
+            className="btn-shine inline-flex h-9 items-center gap-1.5 rounded-lg bg-fg px-3 text-sm font-medium text-bg transition-opacity hover:opacity-90"
           >
             <DownloadIcon className="size-4" />
             Resume
@@ -46,6 +46,7 @@ export function SiteHeader() {
           <ThemeToggle />
         </div>
       </div>
+      <div className="scroll-progress absolute inset-x-0 bottom-0 h-0.5 bg-accent" aria-hidden />
     </header>
   );
 }

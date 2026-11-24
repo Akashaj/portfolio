@@ -23,9 +23,11 @@ npm run dev     # http://localhost:3000
 npm run build   # production build
 ```
 
-## Accent colour preview
-A floating "Variant" switcher toggles teal and purple (try `?accent=purple`, and `?theme=dark` for the dark theme).
-Once you've picked one, set `NEXT_PUBLIC_SHOW_VARIANTS=false` in Vercel, and change the default `data-accent` in `app/layout.tsx`.
+## Theme & motion
+- Accent colour is purple (tokens in `app/globals.css`; teal tokens are kept under `data-accent="teal"`).
+- Light/dark follows the system, with a toggle in the header. Preview with `?theme=dark`.
+- Animations: scroll reveals (`data-reveal`), number count-ups, self-drawing diagrams, a stack marquee, card spotlight and a scroll progress bar.
+  All of them are disabled for `prefers-reduced-motion`, and content stays visible without JavaScript.
 
 ## Deploy
 Push to `main`. Vercel builds and deploys automatically.
