@@ -417,7 +417,8 @@ function Contact() {
 }
 
 const STACK = [
-  "React Native", "TypeScript", "Node.js", "Express", "Next.js", "React", "JSI", "SQLite",
+  "React Native", "TypeScript", "New Architecture", "Hermes", "Fabric", "TurboModules", "JSI", "Codegen",
+  "Node.js", "Express", "Next.js", "React", "SQLite",
   "GraphQL", "AWS AppSync", "Firebase", "Cloud Functions", "Redux Toolkit", "Redux-Saga",
   "Zustand", "Kotlin", "iOS", "Android TV", "Jest", "GitHub Actions", "CodePush", "OpenSearch",
 ];

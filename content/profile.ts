@@ -34,8 +34,8 @@ export const metrics = [
 export const capabilities = [
   {
     title: "Mobile architecture",
-    body: "React Native and TypeScript at scale: JSI and native modules (Kotlin, iOS), modular micro-app architecture, Android TV / Fire TV, and large migrations like Amplify v5→v6 and RN 0.75→0.77.",
-    tags: ["React Native", "TypeScript", "JSI", "Native modules", "Micro-apps"],
+    body: "React Native and TypeScript at scale on the New Architecture: Hermes, Fabric, JSI and TurboModules with typed specs and Codegen. Main engineer on the upgrade to React Native 0.85.3, migrating class components and native modules to the New Architecture. Also native modules (Kotlin, iOS), micro-app architecture, Android TV / Fire TV, and migrations like Amplify v5→v6.",
+    tags: ["New Architecture", "Hermes", "Fabric", "TurboModules", "JSI", "Codegen", "RN 0.85"],
   },
   {
     title: "Offline-first & real-time",
@@ -79,7 +79,7 @@ export const leadership = [
 export const skills = [
   {
     group: "Mobile Architecture",
-    items: ["React Native", "TypeScript", "JSI", "Native modules (Kotlin, iOS)", "Offline-first / local-first", "Micro-app architecture", "Android TV / Fire TV", "React Native Web"],
+    items: ["React Native", "TypeScript", "New Architecture (Fabric, TurboModules)", "Hermes", "JSI", "Codegen & typed native specs", "RN 0.85.3 upgrade", "New Architecture migration (components & native modules)", "Native modules (Kotlin, iOS)", "Offline-first / local-first", "Micro-app architecture", "Android TV / Fire TV", "React Native Web"],
   },
   {
     group: "Offline-First & Real-Time",
