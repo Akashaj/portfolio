@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import portrait from "@/public/images/akash-portrait.jpg";
+import { AccentGradientText, HeroProfileCard, HeroRotatingText, ThemedSpotlightCard } from "@/components/reactbits/themed";
 import { capabilities, leadership, metrics, profile, skills } from "@/content/profile";
 import { apps } from "@/content/apps";
 import { experience, education } from "@/content/experience";
@@ -52,7 +51,18 @@ function Hero() {
           <h1 id="hero-title" className="fade-up delay-1 text-4xl font-semibold tracking-tight text-balance sm:text-5xl lg:text-6xl">
             {profile.name}
             <span className="mt-3 block text-2xl font-medium text-muted sm:text-3xl lg:text-[2.1rem]">
-              <span className="text-accent">Mobile architect</span> & full-stack engineer.
+              <AccentGradientText animationSpeed={6} className="font-semibold">Mobile architect</AccentGradientText> &amp; full-stack engineer.
+              <span className="mt-2 flex flex-wrap items-center gap-x-2 text-lg font-normal sm:text-xl">
+                Building with
+                <HeroRotatingText
+                  texts={["React Native", "TypeScript", "the New Architecture", "Node.js & Express", "Next.js", "offline-first sync"]}
+                  rotationInterval={2200}
+                  staggerDuration={0.02}
+                  effect="slide"
+                  mainClassName="inline-flex overflow-hidden rounded-md bg-accent px-2 py-0.5 font-medium text-accent-fg"
+                  splitLevelClassName="overflow-hidden"
+                />
+              </span>
             </span>
           </h1>
           <p className="fade-up delay-2 mt-6 max-w-xl text-lg leading-relaxed text-pretty text-muted">
@@ -92,24 +102,29 @@ function Hero() {
         </div>
 
         <div className="fade-up delay-2 relative mx-auto w-full max-w-sm lg:max-w-none">
-          <div className="float">
-          <div className="absolute -inset-3 rounded-[28px] bg-accent/15 blur-2xl" aria-hidden />
-          <div className="relative overflow-hidden rounded-3xl border border-line bg-surface shadow-xl">
-            <Image
-              src={portrait}
-              alt={`Portrait of ${profile.name}`}
-              priority
-              placeholder="blur"
-              sizes="(min-width: 1024px) 420px, 90vw"
-              className="aspect-[4/5] w-full object-cover"
+          <div className="flex justify-center lg:justify-end">
+            <HeroProfileCard
+              avatarUrl="/images/akash-portrait.jpg"
+              miniAvatarUrl="/images/akash-square.jpg"
+              name={profile.name}
+              title="Mobile Architect & Full-Stack Engineer"
+              handle="akash-j"
+              status="Staff Engineer · Foodhub"
+              statusColor="#22c55e"
+              contactText="Contact"
+              contactHref="#contact"
+              radius={20}
+              holo={0.7}
+              glare={0.45}
+              tiltStrength={10}
+              className="w-[360px]"
             />
-            <div className="absolute inset-x-3 bottom-3 rounded-2xl border border-white/10 bg-black/55 p-4 text-white backdrop-blur-md">
-              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-white/70">{profile.now.label}</p>
-              <p className="mt-1 text-sm leading-snug">{profile.now.text}</p>
-            </div>
           </div>
+          <div className="mx-auto mt-5 max-w-[360px] rounded-2xl border border-line bg-surface/80 p-4 backdrop-blur lg:mr-0">
+            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-subtle">{profile.now.label}</p>
+            <p className="mt-1 text-sm leading-snug">{profile.now.text}</p>
           </div>
-          <p className="mt-4 flex items-center justify-center gap-1.5 text-sm text-subtle lg:justify-start">
+          <p className="mt-4 flex items-center justify-center gap-1.5 text-sm text-subtle lg:justify-end">
             <MapPinIcon className="size-4" /> {profile.location}
           </p>
         </div>
@@ -154,11 +169,13 @@ function Capabilities() {
         </div>
         <div className="grid gap-4 md:grid-cols-3">
           {capabilities.map((c, i) => (
-            <article
+            <ThemedSpotlightCard
               key={c.title}
               data-reveal
               style={{ "--d": `${i * 110}ms` } as React.CSSProperties}
-              className="spotlight flex flex-col rounded-2xl border border-line bg-surface p-6 transition-colors hover:border-accent/50"
+              className="flex flex-col !rounded-2xl !p-6"
+              spotlightSize={280}
+              intensity={0.2}
             >
               <span className="font-mono text-xs text-accent">0{i + 1}</span>
               <h3 className="mt-3 text-lg font-semibold">{c.title}</h3>
@@ -168,7 +185,7 @@ function Capabilities() {
                   <Tag key={t}>{t}</Tag>
                 ))}
               </div>
-            </article>
+            </ThemedSpotlightCard>
           ))}
         </div>
       </Container>
