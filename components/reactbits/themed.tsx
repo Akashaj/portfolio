@@ -6,6 +6,9 @@ import ProfileCard from "./ProfileCard";
 import RotatingText from "./RotatingText";
 import GradientText from "./GradientText";
 import SpotlightCard from "./SpotlightCard";
+import Particles from "./Particles";
+import MagicRings from "./MagicRings";
+import ClickSpark from "./ClickSpark";
 
 /** Purple palette per theme, shared by the React Bits wrappers. */
 const PURPLE = {
@@ -60,5 +63,80 @@ export function ThemedSpotlightCard({ style, ...props }: ComponentProps<typeof S
       } as React.CSSProperties}
       {...props}
     />
+  );
+}
+
+/**
+ * Site-wide particle field, fixed behind every section. Faint purple nodes with
+ * short links read as a network, a quiet nod to the sync/P2P work.
+ */
+export function SiteParticles() {
+  const theme = useTheme();
+  const dark = theme === "dark";
+  return (
+    <div className="pointer-events-none fixed inset-0 -z-10" aria-hidden>
+      <Particles
+        key={theme}
+        particleCount={dark ? 170 : 150}
+        particleSpread={11}
+        speed={0.05}
+        particleColors={dark ? ["#a78bfa", "#c4b5fd", "#e9d5ff"] : ["#7c3aed", "#8b5cf6", "#a78bfa"]}
+        particleBaseSize={70}
+        sizeRandomness={0.8}
+        alphaParticles
+        glow={dark ? 0.6 : 0.2}
+        twinkle={0.25}
+        connections
+        connectionDistance={95}
+        hoverEffect="parallax"
+        particleHoverFactor={0.6}
+        clickBurst={false}
+        opacity={dark ? 0.75 : 0.55}
+        lightMode={!dark}
+      />
+    </div>
+  );
+}
+
+/** Soft pulsing rings that sit behind the profile card. */
+export function HeroRings() {
+  const theme = useTheme();
+  const c = PURPLE[theme];
+  return (
+    <MagicRings
+      key={theme}
+      theme={theme}
+      color={c.glow}
+      colorTwo="#ec4899"
+      ringCount={5}
+      motion="breathe"
+      speed={0.6}
+      lineThickness={1.5}
+      glow={theme === "dark" ? 0.9 : 0.5}
+      baseRadius={0.3}
+      radiusStep={0.075}
+      opacity={theme === "dark" ? 0.85 : 0.6}
+      followMouse
+      mouseInfluence={0.12}
+      clickBurst={false}
+    />
+  );
+}
+
+export function CardRings() {
+  return (
+    <div className="pointer-events-none absolute left-1/2 top-[42%] -z-10 aspect-square w-[175%] -translate-x-1/2 -translate-y-1/2 [mask-image:radial-gradient(closest-side,#000_72%,transparent)]" aria-hidden>
+      <HeroRings />
+    </div>
+  );
+}
+
+export function PurpleClickSpark({ children }: { children: React.ReactNode }) {
+  const theme = useTheme();
+  const c = PURPLE[theme];
+  return (
+    <ClickSpark sparkColor={[c.accent, c.soft, "#ec4899"]} sparkSize={9} sparkRadius={22} sparkCount={9} duration={450}>
+      {children}
+    </ClickSpark>
   );
 }

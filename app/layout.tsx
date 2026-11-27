@@ -6,6 +6,7 @@ import "./globals.css";
 import { SITE_URL, profile } from "@/content/profile";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { PurpleClickSpark, SiteParticles } from "@/components/reactbits/themed";
 import { RevealObserver } from "@/components/RevealObserver";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -101,8 +102,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           Skip to content
         </a>
         <SiteHeader />
+        <SiteParticles />
         <main id="main" className="flex-1">
-          {children}
+          <PurpleClickSpark>{children}</PurpleClickSpark>
         </main>
         <SiteFooter />
         <RevealObserver />

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { AccentGradientText, HeroProfileCard, HeroRotatingText, ThemedSpotlightCard } from "@/components/reactbits/themed";
+import { AccentGradientText, CardRings, HeroProfileCard, HeroRotatingText, ThemedSpotlightCard } from "@/components/reactbits/themed";
 import { capabilities, leadership, metrics, profile, skills } from "@/content/profile";
 import { apps } from "@/content/apps";
 import { experience, education } from "@/content/experience";
@@ -102,7 +102,9 @@ function Hero() {
         </div>
 
         <div className="fade-up delay-2 relative mx-auto w-full max-w-sm lg:max-w-none">
-          <div className="flex justify-center lg:justify-end">
+          <div className="relative isolate flex justify-center lg:justify-end">
+            <div className="relative w-[360px] max-w-full">
+            <CardRings />
             <HeroProfileCard
               avatarUrl="/images/akash-portrait.jpg"
               miniAvatarUrl="/images/akash-square.jpg"
@@ -119,6 +121,7 @@ function Hero() {
               tiltStrength={10}
               className="w-[360px]"
             />
+            </div>
           </div>
           <div className="mx-auto mt-5 max-w-[360px] rounded-2xl border border-line bg-surface/80 p-4 backdrop-blur lg:mr-0">
             <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-subtle">{profile.now.label}</p>
